@@ -84,4 +84,4 @@ No known bugs
 To support me, you can contact me at <a href="https://www.gmail.com">philippokar@hotmail.co.uk</a>
 
 ## License
-[MIT © 2019] [philipkariuki](https://github.com/philipkariuki/flask-blof/blob/master/LICENSE)
+[MIT © 2019](https://github.com/philipkariuki/flask-blof/blob/master/LICENSE)
