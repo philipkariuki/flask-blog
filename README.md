@@ -8,7 +8,7 @@ IP for MC18 week 4 of Python that requires creating a personal blogging website 
 ## Description
 This is a Flask web application that entails creating a blogging website where you can create and share your opinions and other users can read and comment on them. Additionally, it has a feature that displays random quotes to inspire users.
 
-* Live link : https://pitchezzz.herokuapp.com
+Live link : https://pitchezzz.herokuapp.com
 
 ## User Stories
 * As a user, I would like to view the blog posts on the site.
