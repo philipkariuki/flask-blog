@@ -19,11 +19,23 @@
 <div class="container">
 
 	 
-
 	<div class="row">
 		
 
 		
+		<h2>Blogs Posted</h2>
+
+		</div>
+
+		<hr>
+
+
+	<div class="row">
+		
+
+		 <ul class="list-unstyled">
+            {{ macro.displayPostList(posts)}}
+        </ul>
 
 
 	</div>
@@ -31,3 +43,4 @@
 	
 </div>
 {% endblock%}
+

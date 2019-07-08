@@ -178,7 +178,19 @@ def update_post(id):
 
 
 
+@main.route('/subscribe/<int:id>')
+@login_required
+def subscribe(id):
+    '''
+    View subscribe function that allows a user to subscribe for email updates when new post is posted
+    '''
+    user = User.query.get(id)
 
+    if user is None:
+        abort(404)
+
+    user.subcribe_user(id)
+    return redirect(url_for('.index'))
 
 
 
