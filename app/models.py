@@ -80,3 +80,35 @@ class Role(db.Model):
         return f'User {self.name}'
 
 
+class Post(db.Model):
+
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer, primary_key = True)
+    post_title = db.Column(db.String)
+    post_content = db.Column(db.String)
+    post_date = db.Column(db.DateTime, default=datetime.now())
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    comments = db.relationship('Comment', backref='post', lazy='dynamic', cascade="all, delete-orphan")
+
+    def save_post(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_posts(cls):
+        posts = Post.query.order_by(Post.id.desc()).all()
+        return posts
+
+    @classmethod
+    def delete_post(cls,post_id):
+        comments = Comment.query.filter_by(post_id=post_id).delete()
+        post = Post.query.filter_by(id=post_id).delete()
+        db.session.commit()
+
+
+
+
+
+
+
+
