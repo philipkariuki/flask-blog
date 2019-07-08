@@ -112,7 +112,7 @@ class Comments(db.Model):
 
     # table columns
     id = db.Column(db. Integer,primary_key = True)
-    content = db.Column(db.String)
+    comment_content = db.Column(db.String)
     date_posted = db.Column(db.DateTime,default=datetime.now)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     post_id = db.Column(db.Integer, db.ForeignKey("posts.id",ondelete='CASCADE') )
