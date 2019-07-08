@@ -107,8 +107,29 @@ class Post(db.Model):
 
 
 
+class Comments(db.Model):
+    __tablename__ = 'comments'
 
+    # table columns
+    id = db.Column(db. Integer,primary_key = True)
+    content = db.Column(db.String)
+    date_posted = db.Column(db.DateTime,default=datetime.now)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id",ondelete='CASCADE') )
 
+    def save_comments(self):
+        db.session.add(self)
+        db.session.commit()
 
+    @classmethod
+    def get_comments(self,id):
+        comment = Comments.query.order_by(Comments.date_posted.desc()).filter_by(post_id=id).all()
+        return comment
 
+    @classmethod
+    def delete_single_comment(cls,comment_id):
+        comment = Comment.query.filter_by(id=comment_id).delete()
+        db.session.commit()
+ 
 
+    
