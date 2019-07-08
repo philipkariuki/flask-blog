@@ -35,8 +35,9 @@ def logout():
 @auth.route('/register',methods = ["GET","POST"])
 def register():
     form = RegistrationForm()
+    role = Role.query.filter_by(id = 2).first()
     if form.validate_on_submit():
-        user = User(email = form.email.data, username = form.username.data,password = form.password.data)
+        user = User(email = form.email.data, username = form.username.data,password = form.password.data, role=role )
         db.session.add(user)
         db.session.commit()
 
