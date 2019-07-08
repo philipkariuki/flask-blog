@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 
 @login_manager.user_loader
@@ -22,6 +23,10 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    posts = db.relationship('Post', backref='user', lazy='dynamic')
+    comments = db.relationship('Comment', backref='user', lazy='dynamic')
+    subscribe = db.Column(db.Boolean, default=False)
 
     @property
     def password(self):
@@ -38,6 +43,30 @@ class User(UserMixin,db.Model):
 
     def __repr__(self):
         return f'User {self.username}'
+
+    @classmethod
+    def check_role(cls,user_id,role_id):
+        get_role = User.query.filter_by(id=user_id).filter_by(role_id=role_id).first()
+        return get_role
+
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def subcribe_user(cls,user_id):
+        user = User.query.filter_by(id=user_id).update({
+            'subscribe':True
+            })
+        db.session.commit()
+
+    @classmethod
+    def get_subscribers(cls):
+        users = User.query.filter_by(subscribe=True).all()
+        users_emails = []
+        for user in users:
+            users_emails.append(user.email)
+        return users_emails
 
 
 
