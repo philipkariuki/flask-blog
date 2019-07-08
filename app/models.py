@@ -25,7 +25,7 @@ class User(UserMixin,db.Model):
     pass_secure = db.Column(db.String(255))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     posts = db.relationship('Post', backref='user', lazy='dynamic')
-    comments = db.relationship('Comment', backref='user', lazy='dynamic')
+    comments = db.relationship('Comments', backref='user', lazy='dynamic')
     subscribe = db.Column(db.Boolean, default=False)
 
     @property
@@ -88,7 +88,7 @@ class Post(db.Model):
     post_content = db.Column(db.String)
     post_date = db.Column(db.DateTime, default=datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    comments = db.relationship('Comment', backref='post', lazy='dynamic', cascade="all, delete-orphan")
+    comments = db.relationship('Comments', backref='post', lazy='dynamic', cascade="all, delete-orphan")
 
     def save_post(self):
         db.session.add(self)
@@ -128,7 +128,7 @@ class Comments(db.Model):
 
     @classmethod
     def delete_single_comment(cls,comment_id):
-        comment = Comment.query.filter_by(id=comment_id).delete()
+        comment = Comments.query.filter_by(id=comment_id).delete()
         db.session.commit()
  
 

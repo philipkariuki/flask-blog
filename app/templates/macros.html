@@ -19,47 +19,11 @@
 
 
     <div class="well well-lg col-xs-12 col-sm-12 col-md-12 col-lg-12 pitch-card text-center">
-      <h3> <a href="/post/{{post.id}}"> {{ post.post_title }} </a></h3>
-      <p class="text-right">Posted by: {{ post.user.username }}</p>
-      <p class="text-right"><span id="time" >Date posted: {{post.post_date.strftime('%B %d, %Y %r')}}</span></p>
+      <h3> <a href="/post/{{posts.id}}"> {{ posts.post_title }} </a></h3>
+      <p> {{ posts.post_content | truncate(45) }} </p>
 
     </div> 
     {% endfor%}
-{% endmacro%}
-
-
-
-<!-- Display Pitches -->
-{% macro displayPitches(pitches_list) %} 
-  {% for pitches in pitches_list%}
-
-
-<style>
-
-  /*.list-group {*/
-  /*font-size: 19px;*/
-
-  /*}*/
-  .text-right {
-  font-size: 34px;
-  }
-  #time {
-    font-size: 25px;
-  }
-
-
-</style>
-
-
-
-
-  <li class="list-unstyled">
-    <a href="/pitches/{{pitches.id}}"><h3>{{pitches.review}}</h3></a>
-    <p class="text-right">Posted by: {{ post.user.username }}</p> 
-    <p class="text-right"><span id="time" >Date posted: {{pitches.date_posted.strftime('%B %d, %Y %r')}}</span></p>
-  </li>
-  <hr>
-  {% endfor%}
 {% endmacro%}
 
 
@@ -88,7 +52,11 @@
   <li class="list-group-item list-group-item-info">
     {{ comment.comment_content}}
     <br><br>
-    <p class="text-right">Posted by {{ comment.user.username }} on:{{comments.date_posted.strftime('%B %d, %Y %r')}}</p>
+    <p class="text-right">Posted by {{ comment.user.username }} on:{{comment.date_posted.strftime('%B %d, %Y %r')}}</p>
+    <a class="btn btn-success btn-lg text-center" href="/post/comment/delete/{{comment.id}}">Delete Comment</a>
+                
+                
+            
   </li>
   </ul>
 {% endfor%}
@@ -97,92 +65,8 @@
 
 
 
-<!-- Display posts on writer route -->
-{% macro displayPostListWriter(post_list) %}
-
-    {% for post in post_list %}
-        <div class="row">
-            
-            <div class="col-md-2 col-lg-2">
-                
-            </div>
-
-            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 well post-well">
-            
-                <li class="text-center">
-
-                    <h3 class="post-title">
-                        
-                        <a href="/writer/post/{{post.id}}">
-                            {{ post.post_title }}   
-                        </a>
-
-                        <br>
-
-                        <small>
-                            by {{ post.user.username }}
-                        </small>
-                        
-                    </h3>
-
-                </li>
-
-            </div>
-
-            <div class="col-md-2 col-lg-2">
-                
-            </div>
-
-        </div>
-
-    {% endfor %}
-
-{% endmacro %}
-
-<!-- Display comments -->
-{% macro displayCommentListWriter(comment_list) %}
 
 
-    {% for comment in comment_list %}
-        <div class="row">
-            
-            <div class="col-md-2 col-lg-2">
-                
-            </div>
-
-            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 well comment-well">
-            
-                <li>
-
-                    <h4 class="comment-content">
-                        
-                        {{ comment.comment_content}}
-
-                        <br>
-
-                        <small class="comment-author"> by {{ comment.user.username }} </small>
-                        
-                    </h4>
-
-                </li>
-
-            </div>
-
-            <div class="col-md-2 col-lg-2">
-
-                <h4>
-                    <a href="/writer/post/comment/delete/{{comment.id}}">
-                        Delete Comment
-                    </a>
-                </h4>
-                
-            </div>
-
-        </div>
-
-    {% endfor %}
-
-{% endmacro %}
 
 
 
