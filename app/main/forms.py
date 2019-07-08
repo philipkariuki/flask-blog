@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,TextAreaField,SubmitField
 from wtforms.validators import Required
 
-class CommentsForm(FlaskForm):
+class CommentForm(FlaskForm):
 
     
     comment_content = TextAreaField('Insert Comment here', validators = [Required()])
@@ -11,7 +11,7 @@ class CommentsForm(FlaskForm):
 
 class PostForm(FlaskForm):
 	post_title = StringField('Post Title')
-    post_content = TextAreaField('Insert thoughts here',validators = [Required()])
+    post_content = TextAreaField('Insert thoughts here', validators = [Required()])
     submit = SubmitField('Submit')
 
 
