@@ -24,13 +24,12 @@ Live link : https://phillblog.herokuapp.com
 ## Specifications
 | Behaviour | Input | Output |
 | --------------- | :----------:| --------: |
-| Display post title | N/A | List of post titles with the writer's name |
-| See an entire post | Click on a post's title | Directed to a page with the post's title, writer's name and comments on the post |
+| Display posted posts | N/A | List of posts show up on the home page |
+| See an entire post | Click on a post's title | Directed to a page with the post's title and comments on the post |
 | Comment on a post | Click Comment | Registered user is directed to a page with a form where the user can create and submit a comment on a post |
-| Create a Post | Click Create Post | Registered user with a writer's role is directed to a page with a form where the user can create and submit a new post |
 | Delete a comment | Click delete for the specific comment | An authenticated user with a writer's role deletes a comment |
-| Delete a post | Click Delete Post | Registered user with a writer's role deletes a post and its comments |
-| Update a post | Click Update Post | Registered user with a writer's role is directed to a page with a form where the user can update the post and submit it |
+| User registration | Click Sign Up | New user registers with an available name and email and gets confirmation email |
+| User login | Click Sign In | Registered user is signs in and is able to access profile menu |
 
 
 ## Setup/Installation Requirements
